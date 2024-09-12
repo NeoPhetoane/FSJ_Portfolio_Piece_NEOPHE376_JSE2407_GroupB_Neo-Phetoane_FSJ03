@@ -7,12 +7,10 @@ export default function Pagination({ currentPage }) {
   return (
     <div className="flex justify-between items-center mt-8">
       {prevPage && (
-        <Link href={`/products?page=${prevPage}`}>
-          <a className="bg-gray-300 px-4 py-2 rounded">Previous</a>
+        <Link href={`/products?page=${prevPage}`} className="bg-gray-300 px-4 py-2 rounded">Previous
         </Link>
       )}
-      <Link href={`/products?page=${nextPage}`}>
-        <a className="bg-gray-300 px-4 py-2 rounded">Next</a>
+      <Link href={`/products?page=${nextPage}`} className="bg-gray-300 px-4 py-2 rounded">Next
       </Link>
     </div>
   );
