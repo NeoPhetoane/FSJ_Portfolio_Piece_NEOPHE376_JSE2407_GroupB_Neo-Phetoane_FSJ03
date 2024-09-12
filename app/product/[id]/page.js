@@ -3,15 +3,30 @@ import Link from 'next/link';
 const API_URL = "https://next-ecommerce-api.vercel.app/products";
 
 async function fetchProduct(id) {
+    try {
   const res = await fetch(`${API_URL}/${id}`);
   if (!res.ok) {
     throw new Error("Failed to fetch product");
   }
   return res.json();
+} catch (error) {
+    return { error: 'Unable to load product at this time.' };
+  }
 }
 
 export default async function ProductDetail({ params }) {
   const product = await fetchProduct(params.id);
+
+  if (product.error) {
+    return (
+
+        <div className="text-center p-8">
+        <h1 className="text-2xl font-bold text-red-600">Error</h1>
+        <p className="text-lg">{product.error}</p>
+        <Link href="/" className="text-blue-500">Back to Products</Link>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -71,8 +86,5 @@ export default async function ProductDetail({ params }) {
 
       </div>
       
-
-
-
   );
 }
