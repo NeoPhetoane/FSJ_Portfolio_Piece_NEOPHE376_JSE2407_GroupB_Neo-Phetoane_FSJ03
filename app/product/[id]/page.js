@@ -1,5 +1,6 @@
-import Link from "next/link";
+
 import Carousel from "@/app/components/Carousel";
+import BackButton from "@/app/components/BackButton";
 
 const API_URL = "https://next-ecommerce-api.vercel.app/products";
 
@@ -23,9 +24,7 @@ export default async function ProductDetail({ params }) {
       <div className="text-center p-8">
         <h1 className="text-2xl font-bold text-red-600">Error</h1>
         <p className="text-lg">{product.error}</p>
-        <Link href="/" className="text-blue-500">
-          Back to Products
-        </Link>
+       <BackButton/>
       </div>
     );
   }
@@ -84,10 +83,7 @@ export default async function ProductDetail({ params }) {
           )}
         </div>
       </div>
-
-      <Link href="/" className="text-blue-500">
-       <button> Back to Products</button>
-      </Link>
+<BackButton />
     </div>
   );
 }
