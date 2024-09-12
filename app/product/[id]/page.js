@@ -1,16 +1,17 @@
-import Link from 'next/link';
+import Link from "next/link";
+import Carousel from "@/app/components/Carousel";
 
 const API_URL = "https://next-ecommerce-api.vercel.app/products";
 
 async function fetchProduct(id) {
-    try {
-  const res = await fetch(`${API_URL}/${id}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch product");
-  }
-  return res.json();
-} catch (error) {
-    return { error: 'Unable to load product at this time.' };
+  try {
+    const res = await fetch(`${API_URL}/${id}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch product");
+    }
+    return res.json();
+  } catch (error) {
+    return { error: "Unable to load product at this time." };
   }
 }
 
@@ -19,11 +20,12 @@ export default async function ProductDetail({ params }) {
 
   if (product.error) {
     return (
-
-        <div className="text-center p-8">
+      <div className="text-center p-8">
         <h1 className="text-2xl font-bold text-red-600">Error</h1>
         <p className="text-lg">{product.error}</p>
-        <Link href="/" className="text-blue-500">Back to Products</Link>
+        <Link href="/" className="text-blue-500">
+          Back to Products
+        </Link>
       </div>
     );
   }
@@ -31,11 +33,7 @@ export default async function ProductDetail({ params }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div>
-        <img
-          src={product.images[0]}
-          alt={product.title}
-          className="w-full h-auto"
-        />
+         <Carousel images={product.images} />
         <div className="flex space-x-4 overflow-x-auto">
           {product.images.map((image, index) => (
             <img
@@ -64,27 +62,32 @@ export default async function ProductDetail({ params }) {
             : "Out of Stock"}
         </p>
 
- {/* Reviews Section */}
- <div className="mt-8">
-            <h2 className="text-2xl font-semibold">Reviews</h2>
-            {product.reviews && product.reviews.length > 0 ? (
-              product.reviews.map((review) => (
-                <div key={review.id} className="mt-4 p-4 border rounded-lg shadow">
-                  <p><strong>{review.reviewerName}</strong> ({new Date(review.date).toLocaleDateString()})</p>
-                  <p>Rating: {review.rating} / 5</p>
-                  <p>{review.comment}</p>
-                </div>
-              ))
-            ) : (
-              <p>No reviews available.</p>
-            )}
-          </div>
+        {/* Reviews Section */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-semibold">Reviews</h2>
+          {product.reviews && product.reviews.length > 0 ? (
+            product.reviews.map((review) => (
+              <div
+                key={review.id}
+                className="mt-4 p-4 border rounded-lg shadow"
+              >
+                <p>
+                  <strong>{review.reviewerName}</strong> (
+                  {new Date(review.date).toLocaleDateString()})
+                </p>
+                <p>Rating: {review.rating} / 5</p>
+                <p>{review.comment}</p>
+              </div>
+            ))
+          ) : (
+            <p>No reviews available.</p>
+          )}
         </div>
-    
-<Link href="/"className="text-blue-500">Back to Products
-</Link>
-
       </div>
-      
+
+      <Link href="/" className="text-blue-500">
+       <button> Back to Products</button>
+      </Link>
+    </div>
   );
 }
