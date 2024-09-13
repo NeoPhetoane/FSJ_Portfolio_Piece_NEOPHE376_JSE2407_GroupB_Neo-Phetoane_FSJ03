@@ -9,9 +9,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-gray-100">
         {/* Header / Navbar */}
-        <header className="bg-white shadow p-4">
+        <header className="bg-white shadow p-2">
           <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-bold">E-commerce Store</h1>
+          <img className="w-20 h-20 md:w-24 md:h-24 object-contain" src="./Logo.png" alt="Logo" />
 
             {/* Navbar Links */}
             <nav className="space-x-6">
