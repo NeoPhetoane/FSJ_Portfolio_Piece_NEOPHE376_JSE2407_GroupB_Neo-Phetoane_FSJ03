@@ -1,15 +1,31 @@
-import './globals.css';
+import "./globals.css";
 
 export const metadata = {
-  title: 'My E-commerce Store',
+  title: "My E-commerce Store",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-100">
-        <header className="bg-gray-300 shadow p-4">
-          <h1 className="text-2xl font-bold text-center">E-commerce Store</h1>
+        {/* Header / Navbar */}
+        <header className="bg-white shadow p-4">
+          <div className="container mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold">E-commerce Store</h1>
+
+            {/* Navbar Links */}
+            <nav className="space-x-6">
+              <a href="/" className="text-gray-700 hover:text-gray-900">
+                Products
+              </a>
+              <a href="/cart" className="text-gray-700 hover:text-gray-900">
+                Cart
+              </a>
+              <a href="/about" className="text-gray-700 hover:text-gray-900">
+                About
+              </a>
+            </nav>
+          </div>
         </header>
         <main className="container mx-auto mt-8 p-4">{children}</main>
       </body>
