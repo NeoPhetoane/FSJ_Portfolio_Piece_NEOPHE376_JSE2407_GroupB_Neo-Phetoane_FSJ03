@@ -22,7 +22,7 @@ export default function Carousel({ images }) {
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
       {/* Previous Button */}
       <button
