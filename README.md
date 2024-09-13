@@ -66,7 +66,7 @@ app
 **Setup Instructions**
 1. Before you begin, ensure you have Node.js installed
 
-2. git clone https://github.com/yourusername/e-commerce-store.git
+2. git clone https://github.com/NeoPhetoane/NEOPHE376_JSE2407_GroupB_Neo-Phetoane_FSJ01.git 
 
 3. npm install
 
