@@ -1,4 +1,5 @@
 import "./globals.css";
+import SearchBar from "./components/SearchBar";
 
 export const metadata = {
   title: "My E-commerce Store",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </header>
+        <SearchBar />
         <main className="container mx-auto mt-8 p-4">{children}</main>
       </body>
     </html>
