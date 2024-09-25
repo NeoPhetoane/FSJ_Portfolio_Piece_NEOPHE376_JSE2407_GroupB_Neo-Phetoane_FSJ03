@@ -61,7 +61,7 @@ export default async function ProductsPage({ searchParams }) {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <Pagination currentPage={page} />
+      <Pagination currentPage={page} totalItems={products.length} />
     </div>
   );
 }
