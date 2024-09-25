@@ -2,13 +2,15 @@
 import ProductCard from "../components/ProductCard";
 import Pagination from '../components/Pagination';
 import BackButton from "../components/BackButton";
+import FilterDropdown from "../components/FilterDropdown";
 
-async function fetchProducts(page = 1, limit = 20, searchQuery = '') {
+async function fetchProducts(page = 1, limit = 20, searchQuery = '', category = '') {
     try {
     // Build the URL dynamically based on page, limit, and search query
     const query = searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : '';
+    const categoryQuery = category ? `&category=${encodeURIComponent(category)}` : '';
     const res = await fetch(
-      `https://next-ecommerce-api.vercel.app/products?skip=${(page - 1) * limit}&limit=${limit}${query}`
+      `https://next-ecommerce-api.vercel.app/products?skip=${(page - 1) * limit}&limit=${limit}${query}${categoryQuery}`
     );
 
   if (!res.ok) {
@@ -22,7 +24,8 @@ async function fetchProducts(page = 1, limit = 20, searchQuery = '') {
 export default async function ProductsPage({searchParams}) {
   const page = Number(searchParams.page) || 1;
   const searchQuery = searchParams.search || ''; // Get the search query from searchParams
-  const products = await fetchProducts(page, 20, searchQuery); // Pass the search query to the fetch function
+  const category = searchParams.category || ''; // Get the category from searchParams
+  const products = await fetchProducts(page, 20, searchQuery, category); // Pass the search query to the fetch function
 
   if (products.error) {
     return (
@@ -36,6 +39,9 @@ export default async function ProductsPage({searchParams}) {
 
   return (
     <div>
+
+<FilterDropdown currentCategory={category} />
+
       {/* Display the search term if available */}
       {searchQuery && (
         <p className="text-gray-600 mb-4">
