@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from 'next/image';
 
 export default function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,9 +23,10 @@ export default function Carousel({ images }) {
 
   return (
     <div className="relative w-full h-64 overflow-hidden">
-      <img
+      <Image
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
+        width={500} height={500} quality={75}
         className="w-full h-full object-contain"
       />
       {/* Previous Button */}
