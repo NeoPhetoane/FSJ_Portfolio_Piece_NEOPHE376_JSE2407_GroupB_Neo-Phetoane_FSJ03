@@ -1,11 +1,11 @@
-
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const SortDropdown = ({ currentSortBy, currentOrder }) => {
   const router = useRouter();
+  const searchParams = useSearchParams(); // Access current query parameters
   const [sortBy, setSortBy] = useState(currentSortBy);
   const [order, setOrder] = useState(currentOrder);
 
@@ -14,14 +14,17 @@ const SortDropdown = ({ currentSortBy, currentOrder }) => {
 
     // Split value into sortBy and order
     const [newSortBy, newOrder] = value.split('|');
-
     setSortBy(newSortBy);
     setOrder(newOrder);
 
-    // Update the URL with new sort parameters
-    router.push(`/products?sortBy=${encodeURIComponent(newSortBy)}&order=${encodeURIComponent(newOrder)}`);
-  };
+    // Clone the existing searchParams and update sortBy and order
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('sortBy', encodeURIComponent(newSortBy));
+    params.set('order', encodeURIComponent(newOrder));
 
+    // Push the updated URL with all query parameters
+    router.push(`/products?${params.toString()}`);
+  };
 
   return (
     <div className="mb-4">
@@ -36,4 +39,3 @@ const SortDropdown = ({ currentSortBy, currentOrder }) => {
 };
 
 export default SortDropdown;
-

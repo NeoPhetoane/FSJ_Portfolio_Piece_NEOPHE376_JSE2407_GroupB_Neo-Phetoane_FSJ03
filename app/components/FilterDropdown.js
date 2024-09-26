@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const FilterDropdown = ({ currentCategory }) => {
   const [categories, setCategories] = useState([]);
   const router = useRouter();
+  const searchParams = useSearchParams(); // Access current query parameters
 
   useEffect(() => {
     // Fetch categories from the API
@@ -24,10 +25,17 @@ const FilterDropdown = ({ currentCategory }) => {
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
-    const url = selectedCategory ? `/products?category=${encodeURIComponent(selectedCategory)}` : '/products';
     
-    // Push the new category filter to the URL
-    router.push(url);
+    // Clone the existing searchParams and update the category
+    const params = new URLSearchParams(searchParams.toString());
+    if (selectedCategory) {
+      params.set('category', encodeURIComponent(selectedCategory));
+    } else {
+      params.delete('category');
+    }
+
+    // Push the updated URL with all query parameters
+    router.push(`/products?${params.toString()}`);
   };
 
   return (
