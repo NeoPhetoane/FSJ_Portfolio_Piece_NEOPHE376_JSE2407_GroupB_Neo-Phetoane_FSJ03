@@ -1,18 +1,34 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Initialize searchQuery state from URL search parameters
+  useEffect(() => {
+    const query = searchParams.get("search") || "";
+    setSearchQuery(query);
+  }, [searchParams]);
 
   const handleSearch = (e) => {
     e.preventDefault();
 
+    // Construct the new search query
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+
+    // Update the search parameter
     if (searchQuery.trim()) {
-      router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
+      newSearchParams.set("search", encodeURIComponent(searchQuery));
+    } else {
+      newSearchParams.delete("search"); // Remove if empty
     }
+
+    // Redirect to the new URL with updated search parameters
+    router.push(`/products?${newSearchParams.toString()}`);
   };
 
   return (
