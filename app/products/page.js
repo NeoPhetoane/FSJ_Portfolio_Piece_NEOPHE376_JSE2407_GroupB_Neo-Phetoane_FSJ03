@@ -3,6 +3,7 @@ import Pagination from '../components/Pagination';
 import BackButton from "../components/BackButton";
 import FilterDropdown from "../components/FilterDropdown";
 import SortDropdown from "../components/SortDropdown";
+import ResetButton from "../components/Resetbutton";
 
 async function fetchProducts(page = 1, limit = 20, searchQuery = '', category = '', sortBy = '', order = '') {
   try {
@@ -48,7 +49,7 @@ export default async function ProductsPage({ searchParams }) {
     <div>
       <FilterDropdown currentCategory={category} />
       <SortDropdown currentSortBy={sortBy} currentOrder={order} />
-
+<ResetButton/>
       {/* Display the search term if available */}
       {searchQuery && (
         <p className="text-gray-600 mb-4">
