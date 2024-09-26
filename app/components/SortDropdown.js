@@ -30,9 +30,9 @@ const SortDropdown = ({ currentSortBy, currentOrder }) => {
     <div className="mb-4">
       <label htmlFor="sort" className="mr-2 text-gray-600">Sort by:</label>
       <select id="sort" value={`${sortBy}|${order}`} onChange={handleSortChange} className="border p-2">
+        <option value="id|asc">Default</option>
         <option value="price|asc">Price: Low to High</option>
         <option value="price|desc">Price: High to Low</option>
-        <option value="id|asc">Default</option>
       </select>
     </div>
   );
