@@ -48,14 +48,32 @@ Review Sort: The user is able to sort reviews by date and rating.
 <img src="./public/Screenshot (230).png"  alt="Reviews sorting">
 
 
-**Technologies Used**
+**Tech Stack**
+
+Front End
+
 Next.js: React framework for server-side rendering, static site generation, and dynamic routing.
 React: JavaScript library for building user interfaces.
 Tailwind CSS: A utility-first CSS framework for responsive and modern designs.
 JavaScript: Core language for implementing client-side functionality.
-API Fetching: Using native fetch for retrieving product data from an external API.
-Project Structure
+Next/Image: For image optimization and lazy loading.
 
+Back End
+
+API Fetching: Using native fetch for retrieving product data from an external API.
+Node.js: JavaScript runtime used on the server.
+
+Additional Tools & Libraries:
+
+React Hooks: For managing component state and lifecycle.
+Prettier: For code formatting.
+Git: Version control system used for collaboration.
+Next.js Built-in Caching: To improve performance by caching API calls.
+
+
+
+
+**Project Structure**
 
 **The project follows a clean and simple structure for easy navigation and extensibility:**
 
