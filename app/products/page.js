@@ -1,20 +1,33 @@
 import ProductCard from "../components/ProductCard";
-import Pagination from '../components/Pagination';
+import Pagination from "../components/Pagination";
 import BackButton from "../components/BackButton";
 import FilterDropdown from "../components/FilterDropdown";
 import SortDropdown from "../components/SortDropdown";
 import ResetButton from "../components/Resetbutton";
 
-async function fetchProducts(page = 1, limit = 20, searchQuery = '', category = '', sortBy = '', order = '') {
+async function fetchProducts(
+  page = 1,
+  limit = 20,
+  searchQuery = "",
+  category = "",
+  sortBy = "",
+  order = ""
+) {
   try {
     // Build the URL dynamically based on page, limit, search query, category, sortBy, and order
-    const query = searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : '';
-    const categoryQuery = category ? `&category=${encodeURIComponent(category)}` : '';
-    const sortByQuery = sortBy ? `&sortBy=${encodeURIComponent(sortBy)}` : '';
-    const orderQuery = order ? `&order=${encodeURIComponent(order)}` : '';
+    const query = searchQuery
+      ? `&search=${encodeURIComponent(searchQuery)}`
+      : "";
+    const categoryQuery = category
+      ? `&category=${encodeURIComponent(category)}`
+      : "";
+    const sortByQuery = sortBy ? `&sortBy=${encodeURIComponent(sortBy)}` : "";
+    const orderQuery = order ? `&order=${encodeURIComponent(order)}` : "";
 
     const res = await fetch(
-      `https://next-ecommerce-api.vercel.app/products?skip=${(page - 1) * limit}&limit=${limit}${query}${categoryQuery}${sortByQuery}${orderQuery}`
+      `https://next-ecommerce-api.vercel.app/products?skip=${
+        (page - 1) * limit
+      }&limit=${limit}${query}${categoryQuery}${sortByQuery}${orderQuery}`
     );
 
     if (!res.ok) {
@@ -22,18 +35,27 @@ async function fetchProducts(page = 1, limit = 20, searchQuery = '', category = 
     }
     return res.json();
   } catch (error) {
-    return { error: "Unable to load products at this time. Please try again later." };
+    return {
+      error: "Unable to load products at this time. Please try again later.",
+    };
   }
 }
 
 export default async function ProductsPage({ searchParams }) {
   const page = Number(searchParams.page) || 1;
-  const searchQuery = searchParams.search || ''; // Get the search query from searchParams
-  const category = searchParams.category || ''; // Get the category from searchParams
-  const sortBy = searchParams.sortBy || ''; // Get the sortBy parameter from searchParams
-  const order = searchParams.order || 'asc'; // Get the order parameter from searchParams
+  const searchQuery = searchParams.search || ""; // Get the search query from searchParams
+  const category = searchParams.category || ""; // Get the category from searchParams
+  const sortBy = searchParams.sortBy || ""; // Get the sortBy parameter from searchParams
+  const order = searchParams.order || ""; // Get the order parameter from searchParams
 
-  const products = await fetchProducts(page, 20, searchQuery, category, sortBy, order); // Pass all query parameters to the fetch function
+  const products = await fetchProducts(
+    page,
+    20,
+    searchQuery,
+    category,
+    sortBy,
+    order
+  ); // Pass all query parameters to the fetch function
 
   if (products.error) {
     return (
@@ -49,11 +71,12 @@ export default async function ProductsPage({ searchParams }) {
     <div>
       <FilterDropdown currentCategory={category} />
       <SortDropdown currentSortBy={sortBy} currentOrder={order} />
-<ResetButton/>
+      <ResetButton />
       {/* Display the search term if available */}
       {searchQuery && (
         <p className="text-gray-600 mb-4">
-          Showing results for: <span className="font-semibold">{searchQuery}</span>
+          Showing results for:{" "}
+          <span className="font-semibold">{searchQuery}</span>
         </p>
       )}
 
@@ -62,7 +85,14 @@ export default async function ProductsPage({ searchParams }) {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <Pagination currentPage={page} totalItems={products.length} />
+      <Pagination
+        currentPage={page}
+        searchQuery={searchQuery}
+        category={category}
+        sortBy={sortBy}
+        order={order}
+        totalItems={products.length}
+      />
     </div>
   );
 }
