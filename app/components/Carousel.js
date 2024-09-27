@@ -26,7 +26,7 @@ export default function Carousel({ images }) {
       <Image
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        width={500} height={500} quality={75}
+        width={500} height={500} quality={75} priority
         className="w-full h-full object-contain"
       />
       {/* Previous Button */}
