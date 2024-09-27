@@ -1,6 +1,7 @@
 
 import Carousel from "@/app/components/Carousel";
 import BackButton from "@/app/components/BackButton";
+import ProductReviews from "@/app/components/ProductReviews";
 
 const API_URL = "https://next-ecommerce-api.vercel.app/products";
 
@@ -62,26 +63,8 @@ export default async function ProductDetail({ params }) {
         </p>
 
         {/* Reviews Section */}
-        <div className="mt-8">
-          <h2 className="text-2xl font-semibold">Reviews</h2>
-          {product.reviews && product.reviews.length > 0 ? (
-            product.reviews.map((review) => (
-              <div
-                key={review.id}
-                className="mt-4 p-4 border rounded-lg shadow"
-              >
-                <p>
-                  <strong>{review.reviewerName}</strong> (
-                  {new Date(review.date).toLocaleDateString()})
-                </p>
-                <p>Rating: {review.rating} / 5</p>
-                <p>{review.comment}</p>
-              </div>
-            ))
-          ) : (
-            <p>No reviews available.</p>
-          )}
-        </div>
+        <ProductReviews reviews={product.reviews} />
+    
       </div>
 <BackButton />
     </div>
