@@ -2,7 +2,8 @@ import "./globals.css";
 import SearchBar from "./components/SearchBar";
 
 export const metadata = {
-  title: "My E-commerce Store",
+  title: "METO",
+  description: 'Welcome to METO, where You Too can get whatever you need.',
 };
 
 export default function RootLayout({ children }) {

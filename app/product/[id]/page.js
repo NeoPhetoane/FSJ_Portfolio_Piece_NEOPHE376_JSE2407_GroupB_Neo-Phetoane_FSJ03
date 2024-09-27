@@ -1,4 +1,3 @@
-
 import Carousel from "@/app/components/Carousel";
 import BackButton from "@/app/components/BackButton";
 import ProductReviews from "@/app/components/ProductReviews";
@@ -17,6 +16,22 @@ async function fetchProduct(id) {
   }
 }
 
+//Meta data section
+export async function generateMetadata({ params }) {
+  const { id } = params;
+
+  const product = await fetchProduct(id);
+
+  return {
+    title: `${product.title} - METO`,
+    description:
+      product.description ||
+      "Find high-quality products at our e-commerce store.",
+  };
+}
+
+//Product Detail
+
 export default async function ProductDetail({ params }) {
   const product = await fetchProduct(params.id);
 
@@ -25,7 +40,7 @@ export default async function ProductDetail({ params }) {
       <div className="text-center p-8">
         <h1 className="text-2xl font-bold text-red-600">Error</h1>
         <p className="text-lg">{product.error}</p>
-       <BackButton/>
+        <BackButton />
       </div>
     );
   }
@@ -33,7 +48,7 @@ export default async function ProductDetail({ params }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div>
-         <Carousel images={product.images} />
+        <Carousel images={product.images} />
         <div className="flex space-x-4 overflow-x-auto">
           {product.images.map((image, index) => (
             <img
@@ -61,12 +76,9 @@ export default async function ProductDetail({ params }) {
             ? `In Stock (${product.stock} available)`
             : "Out of Stock"}
         </p>
-
-        {/* Reviews Section */}
         <ProductReviews reviews={product.reviews} />
-    
       </div>
-<BackButton />
+      <BackButton />
     </div>
   );
 }
