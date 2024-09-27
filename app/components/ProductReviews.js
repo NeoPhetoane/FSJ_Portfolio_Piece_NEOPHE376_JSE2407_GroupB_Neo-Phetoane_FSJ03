@@ -1,12 +1,32 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 
 const ProductReviews = ({ reviews }) => {
   const [sortDate, setSortDate] = useState('none'); 
   const [sortRating, setSortRating] = useState('none');
-  
-  const sortedReviews = [...reviews].sort((a, b) => {
+  const [formattedReviews, setFormattedReviews] = useState(reviews);
+
+
+//Date formatting
+  useEffect(() => {
+    
+    const formatted = reviews.map(review => ({
+      ...review,
+      formattedDate: new Date(review.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }),
+    }));
+    setFormattedReviews(formatted);
+  }, [reviews]);
+
+
+
+  const sortedReviews = [...formattedReviews].sort((a, b) => {
+
+
     // If neither date nor rating sorting is selected, return original order
     if (sortDate === 'none' && sortRating === 'none') {
       return 0; 
@@ -78,7 +98,7 @@ const ProductReviews = ({ reviews }) => {
           <div key={review.reviewerEmail} className="mt-4 p-4 border rounded-lg shadow">
             <p>
               <strong>{review.reviewerName}</strong> (
-              {new Date(review.date).toLocaleDateString()} )
+              {new Date(review.formattedDate).toLocaleDateString()} )
             </p>
             <p>Rating: {review.rating} / 5</p>
             <p>{review.comment}</p>
