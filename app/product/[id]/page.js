@@ -6,7 +6,12 @@ const API_URL = "https://next-ecommerce-api.vercel.app/products";
 
 async function fetchProduct(id) {
   try {
-    const res = await fetch(`${API_URL}/${id}`);
+
+    const res = await fetch(`${API_URL}/${id}`, {
+      next: { revalidate: 60 }, // Revalidate the cache every 60 seconds
+      cache: 'force-cache', // Use cached data if available
+    });
+    
     if (!res.ok) {
       throw new Error("Failed to fetch product");
     }
