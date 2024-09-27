@@ -12,8 +12,9 @@ export default function RootLayout({ children }) {
         {/* Header / Navbar */}
         <header className="bg-white shadow p-2">
           <div className="container mx-auto flex justify-between items-center">
+            <a href="/" >
           <img className="w-20 h-20 md:w-24 md:h-24 object-contain" src="./Logo.png" alt="Logo" />
-
+          </a>
             {/* Navbar Links */}
             <nav className="space-x-6">
               <a href="/" className="text-gray-700 hover:text-gray-900">

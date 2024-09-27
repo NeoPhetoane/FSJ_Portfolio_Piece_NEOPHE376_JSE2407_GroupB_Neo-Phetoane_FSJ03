@@ -6,7 +6,6 @@ const ProductReviews = ({ reviews }) => {
   const [sortDate, setSortDate] = useState('none'); 
   const [sortRating, setSortRating] = useState('none');
   
-s
   const sortedReviews = [...reviews].sort((a, b) => {
     // If neither date nor rating sorting is selected, return original order
     if (sortDate === 'none' && sortRating === 'none') {
