@@ -37,7 +37,7 @@ Responsive Design: The app is fully responsive, adapting to different screen siz
 
 Search functionality: The user is able to type the name or partial words in the name and then see produicts that fit the word.
 
-<img src="./public/Screenshot (232).png alt" alt="Search bar">
+<img src="./public/Screenshot (232).png" alt="Search bar">
 
 Filtering and Sorting: The user is able to filter by categpries and sort by price
 
