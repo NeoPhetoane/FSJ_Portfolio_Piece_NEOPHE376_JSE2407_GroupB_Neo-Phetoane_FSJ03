@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const FilterDropdown = ({ currentCategory }) => {
   const [categories, setCategories] = useState([]);
@@ -12,7 +12,9 @@ const FilterDropdown = ({ currentCategory }) => {
     // Fetch categories from the API
     const fetchCategories = async () => {
       try {
-        const res = await fetch('https://next-ecommerce-api.vercel.app/categories');
+        const res = await fetch(
+          "https://next-ecommerce-api.vercel.app/categories"
+        );
         const data = await res.json();
         setCategories(data);
       } catch (error) {
@@ -25,13 +27,13 @@ const FilterDropdown = ({ currentCategory }) => {
 
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
-    
+
     // Clone the existing searchParams and update the category
     const params = new URLSearchParams(searchParams.toString());
     if (selectedCategory) {
-      params.set('category', encodeURIComponent(selectedCategory));
+      params.set("category", encodeURIComponent(selectedCategory));
     } else {
-      params.delete('category');
+      params.delete("category");
     }
 
     // Push the updated URL with all query parameters
@@ -51,9 +53,10 @@ const FilterDropdown = ({ currentCategory }) => {
       >
         <option value="">All Categories</option>
         {categories.map((category) => (
-          <option key={category.id} value={category.name}>
+          <option key={category} value={category}>
             {category}
           </option>
+       
         ))}
       </select>
     </div>
