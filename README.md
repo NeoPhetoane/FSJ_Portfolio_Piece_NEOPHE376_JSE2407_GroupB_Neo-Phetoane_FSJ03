@@ -1,5 +1,5 @@
 **E-Commerce Store**
-Welcome to the E-Commerce Store, a modern, fully-featured e-commerce web application built with Next.js and Tailwind CSS. This project demonstrates how to build an interactive online store with essential e-commerce features like product listings, detailed product pages, pagination, a product image carousel, and robust error handling. The project leverages the power of Next.js for both server-side rendering and client-side interactivity.The store is a complete web application that provides an intuitive interface for users to browse, view, and purchase products.
+Welcome to the E-Commerce Store, a modern, fully-featured e-commerce web application built with Next.js and Tailwind CSS. This project demonstrates how to build an interactive online store with essential e-commerce features like product listings, detailed product pages, pagination, a product image carousel, and robust error handling. The project leverages the power of Next.js for both server-side rendering and client-side interactivity.The store is a complete web application that provides an intuitive interface for users to browse, view, and purchase products. It also has sorting, filtering and search functionalities. 
 
 **Essential features**
 
@@ -34,6 +34,18 @@ Error Handling: Displays user-friendly messages for API errors or failed product
 <img src="./public/Screenshot (226).png" alt="Detail page" />
 
 Responsive Design: The app is fully responsive, adapting to different screen sizes from mobile to desktop.
+
+Search functionality: The user is able to type the name or partial words in the name and then see produicts that fit the word.
+
+<img src="./public/Screenshot (232).png alt" alt="Search bar">
+
+Filtering and Sorting: The user is able to filter by categpries and sort by price
+
+<img src="./public/Screenshot (231).png" alt="Filter dropdown, sort dropdown and reset button">
+
+Review Sort: The user is able to sort reviews by date and rating.
+
+<img src="./public/Screenshot (230).png"  alt="Reviews sorting">
 
 
 **Technologies Used**
