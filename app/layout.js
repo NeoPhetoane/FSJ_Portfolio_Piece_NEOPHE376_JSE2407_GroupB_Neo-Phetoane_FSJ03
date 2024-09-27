@@ -21,10 +21,10 @@ export default function RootLayout({ children }) {
               <a href="/" className="text-gray-700 hover:text-gray-900">
                 Products
               </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
+              <a href="/Cart" className="text-gray-700 hover:text-gray-900">
                 Cart
               </a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">
+              <a href="/About" className="text-gray-700 hover:text-gray-900">
                 About
               </a>
             </nav>
