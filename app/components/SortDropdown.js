@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const SortDropdown = ({ currentSortBy, currentOrder }) => {
@@ -8,6 +8,14 @@ const SortDropdown = ({ currentSortBy, currentOrder }) => {
   const searchParams = useSearchParams(); // Access current query parameters
   const [sortBy, setSortBy] = useState(currentSortBy);
   const [order, setOrder] = useState(currentOrder);
+
+  useEffect(() => {
+    const newSortBy = searchParams.get('sortBy') || 'id';
+    const newOrder = searchParams.get('order') || 'asc';
+
+    setSortBy(newSortBy);
+    setOrder(newOrder);
+  }, [searchParams]);
 
   const handleSortChange = (e) => {
     const value = e.target.value;
