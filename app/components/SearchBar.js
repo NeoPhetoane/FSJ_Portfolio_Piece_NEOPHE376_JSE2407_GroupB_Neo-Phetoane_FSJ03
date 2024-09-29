@@ -27,6 +27,8 @@ const SearchBar = () => {
       newSearchParams.delete("search"); // Remove if empty
     }
 
+    params.set('page', '1');
+
     // Redirect to the new URL with updated search parameters
     router.push(`/products?${newSearchParams.toString()}`);
   };

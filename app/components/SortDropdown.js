@@ -30,6 +30,8 @@ const SortDropdown = ({ currentSortBy, currentOrder }) => {
     params.set('sortBy', encodeURIComponent(newSortBy));
     params.set('order', encodeURIComponent(newOrder));
 
+
+    params.set('page', '1');
     // Push the updated URL with all query parameters
     router.push(`/products?${params.toString()}`);
   };

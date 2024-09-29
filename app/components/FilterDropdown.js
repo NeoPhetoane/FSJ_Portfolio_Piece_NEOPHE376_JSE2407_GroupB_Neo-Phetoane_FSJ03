@@ -36,6 +36,8 @@ const FilterDropdown = ({ currentCategory }) => {
       params.delete("category");
     }
 
+    params.set('page', '1');
+
     // Push the updated URL with all query parameters
     router.push(`/products?${params.toString()}`);
   };
