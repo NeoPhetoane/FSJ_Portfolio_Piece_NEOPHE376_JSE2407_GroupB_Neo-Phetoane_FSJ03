@@ -1,18 +1,14 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const Loading = () => {
-  return;
-  <div>Loading categories...</div>;
-};
 
 const FilterDropdown = ({ currentCategory }) => {
   const [categories, setCategories] = useState([]);
   const router = useRouter();
   const searchParams = useSearchParams(); // Access current query parameters
-  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     // Fetch categories from the API
@@ -51,7 +47,6 @@ const FilterDropdown = ({ currentCategory }) => {
   };
 
   return (
-    <Suspense fallback={<Loading/>}>
     <div className="mb-4">
       <label htmlFor="category" className="mr-2 font-medium text-gray-700">
         Filter by Category:
@@ -70,7 +65,7 @@ const FilterDropdown = ({ currentCategory }) => {
         ))}
       </select>
     </div>
-    </Suspense>
+ 
   );
 };
 
