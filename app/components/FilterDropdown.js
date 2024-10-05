@@ -1,12 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+
+const Loading = () => {
+  return;
+  <div>Loading categories...</div>;
+};
 
 const FilterDropdown = ({ currentCategory }) => {
   const [categories, setCategories] = useState([]);
   const router = useRouter();
   const searchParams = useSearchParams(); // Access current query parameters
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch categories from the API
@@ -19,6 +25,8 @@ const FilterDropdown = ({ currentCategory }) => {
         setCategories(data);
       } catch (error) {
         console.error("Failed to load categories", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -36,13 +44,14 @@ const FilterDropdown = ({ currentCategory }) => {
       params.delete("category");
     }
 
-    params.set('page', '1');
+    params.set("page", "1");
 
     // Push the updated URL with all query parameters
     router.push(`/products?${params.toString()}`);
   };
 
   return (
+    <Suspense fallback={<Loading/>}>
     <div className="mb-4">
       <label htmlFor="category" className="mr-2 font-medium text-gray-700">
         Filter by Category:
@@ -58,10 +67,10 @@ const FilterDropdown = ({ currentCategory }) => {
           <option key={category} value={category}>
             {category}
           </option>
-       
         ))}
       </select>
     </div>
+    </Suspense>
   );
 };
 
