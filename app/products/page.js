@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
 import BackButton from "../components/BackButton";
@@ -74,8 +75,10 @@ export default async function ProductsPage({ searchParams }) {
   return (
     <div>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 space-y-4 md:space-y-0 md:space-x-4">
+        <Suspense>
         <FilterDropdown currentCategory={category} />
         <SortDropdown currentSortBy={sortBy} currentOrder={order} />
+        </Suspense>
         <ResetButton />
       </div>
       {/* Display the search term if available */}
