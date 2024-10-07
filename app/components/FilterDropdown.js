@@ -21,9 +21,7 @@ const FilterDropdown = ({ currentCategory }) => {
         setCategories(data);
       } catch (error) {
         console.error("Failed to load categories", error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchCategories();

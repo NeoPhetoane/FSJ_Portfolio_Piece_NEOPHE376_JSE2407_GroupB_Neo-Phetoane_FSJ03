@@ -46,12 +46,12 @@ async function fetchProducts(
   }
 }
 
-export default async function ProductsPage({ searchParams }) {
-  const page = Number(searchParams.page) || 1;
-  const searchQuery = searchParams.search || ""; // Get the search query from searchParams
-  const category = searchParams.category || ""; // Get the category from searchParams
-  const sortBy = searchParams.sortBy || ""; // Get the sortBy parameter from searchParams
-  const order = searchParams.order || ""; // Get the order parameter from searchParams
+export default async function ProductsPage({ params }) {
+  const page = Number(params.page) || 1;
+  const searchQuery = params.search || ""; // Get the search query from searchParams
+  const category = params.category || ""; // Get the category from searchParams
+  const sortBy = params.sortBy || ""; // Get the sortBy parameter from searchParams
+  const order = params.order || ""; // Get the order parameter from searchParams
 
   const products = await fetchProducts(
     page,
