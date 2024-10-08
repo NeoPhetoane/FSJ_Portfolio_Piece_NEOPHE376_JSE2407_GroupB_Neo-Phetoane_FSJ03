@@ -26,11 +26,10 @@ async function fetchProducts(
     const orderQuery = order ? `&order=${encodeURIComponent(order)}` : "";
 
     const res = await fetch(
-      `https://next-ecommerce-api.vercel.app/products?skip=${
+      `http://localhost:3000/api/products?skip=${
         (page - 1) * limit
       }&limit=${limit}${query}${categoryQuery}${sortByQuery}${orderQuery}`, 
       {
-        next: { revalidate: 60 }, // Revalidate the cache every 60 seconds
         cache: 'force-cache', 
       }
     );
