@@ -15,10 +15,10 @@ const FilterDropdown = ({ currentCategory }) => {
     const fetchCategories = async () => {
       try {
         const res = await fetch(
-          "https://next-ecommerce-api.vercel.app/categories"
+          `http://localhost:3000/api/categories`
         );
         const data = await res.json();
-        setCategories(data);
+        setCategories(data.categories[0].categories);
       } catch (error) {
         console.error("Failed to load categories", error);
       } 
